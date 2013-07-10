@@ -1,0 +1,40 @@
+apply plugin: 'war'
+
+configurations {
+    jettyRuntime
+    providedCompile {
+        extendsFrom jettyRuntime
+    }
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+    jettyRuntime 'org.eclipse.jetty:jetty-server:9.0.4.v20130625'
+    jettyRuntime 'org.eclipse.jetty:jetty-webapp:9.0.4.v20130625'
+
+    compile 'org.eclipse.jetty:jetty-jsp:9.0.4.v20130625'
+}
+
+war {
+    from(configurations.jettyRuntime.collect { it.isDirectory() ? it : zipTree(it)}){
+        exclude 'META-INF/*'
+        exclude 'about.html'
+        exclude 'about_files/'
+        exclude 'plugin.properties'
+        exclude 'readme.txt'
+        exclude 'jetty-dir.css'
+    }
+
+    into('runtime'){
+        from "$buildDir/classes/main/runtime"
+    }
+
+    manifest{
+        attributes "Main-class":"runtime.ServerStarter"
+    }
+
+    baseName = 'java-web-platform'
+}
