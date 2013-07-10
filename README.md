@@ -6,7 +6,7 @@ This project is to demonstrate a simple java webplatform that can be contained i
 How To Build and Run
 ====================
 
-The project requires [gradle]:http://www.gradle.org/ to build
+The project requires [gradle](http://www.gradle.org/) to build
 
 To build and run from the command line:
 
