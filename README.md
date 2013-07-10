@@ -13,6 +13,7 @@ To build and run from the command line:
 1. cd where_ever_the_folder_is
 2. gradle clean build
 3. java -jar build/libs/java-web-platform.war
+4. Launch browser to http://localhost:8080
 
 
 Current Issues
